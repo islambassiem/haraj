@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Vehicle;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,7 +23,11 @@ class DatabaseSeeder extends Seeder
 
     $this->call([
       CategorySeeder::class,
-      PostSeeder::class
+      PostSeeder::class,
+      ItemConditionSeeder::class,
+      ItemSeeder::class,
+      VehicleSeeder::class,
+      HouseSeeder::class,
     ]);
   }
 }

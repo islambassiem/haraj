@@ -23,7 +23,6 @@ class PostFactory extends Factory
     return [
       'user_id' => $user->id,
       'category_id' => $category->id,
-      'post_type' => fake()->numberBetween(1, 3),
       'title' => fake()->word(),
       'description' => fake()->sentence(),
       'price' => fake()->randomNumber(3)

@@ -2,22 +2,25 @@
 
 namespace App\Models;
 
+use App\Models\Post;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Category extends Model
+class Vehicle extends Model
 {
-  /** @use HasFactory<\Database\Factories\CategoryFactory> */
+  /** @use HasFactory<\Database\Factories\VehicleFactory> */
   use HasFactory;
 
   protected $fillable = [
-    'name',
-    'parent_id'
+    'post_id',
+    'year',
+    'make',
+    'model'
   ];
 
-  public function parent(): BelongsTo
+  public function post(): BelongsTo
   {
-    return $this->belongsTo(Category::class, 'parent_id');
+    return $this->belongsTo(Post::class);
   }
 }
