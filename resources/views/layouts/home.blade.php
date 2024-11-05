@@ -94,71 +94,75 @@
             </div>
         </nav>
 
-        <aside id="logo-sidebar"
+        <aside id="logo-sidebar" x-data="{
+            openList: null,
+            toggleList: function(listId) {
+                const list = document.getElementById(listId);
+                const isVisible = list.style.display !== 'none';
+
+                const lists = document.querySelectorAll('.list');
+                lists.forEach((l) => {
+                    l.style.display = 'none';
+                    l.inert = true;
+                });
+
+                list.style.display = isVisible ? 'none' : 'block';
+                list.inert = isVisible ? true : false;
+                openList = isVisible ? null : listId
+            }
+        }"
             class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700"
             aria-label="Sidebar">
             <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
                 <ul class="space-y-2 font-medium">
-                    <li x-data="{ open: false }">
-                        <button type="button" @click="open = ! open"
-                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                viewBox="0 0 18 21">
-                                <path
-                                    d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
-                            </svg>
-                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Home</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 4 4 4-4" />
-                            </svg>
-                        </button>
-                        <ul class="py-2 space-y-2" x-show="open">
-                            <li>
-                                <a href="#"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Products</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
-                            </li>
+                    <li>
+                        <x-sidebar.button @click="toggleList('home')">Home</x-sidebar.button>
+                        <ul id="home" class="list py-2 space-y-2" x-show="openList === 'home'" x-cloak>
+                            @foreach ($home as $item)
+                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                            @endforeach
                         </ul>
-                    </li>
-                    <li x-data="{ open: false }">
-                        <button type="button" @click="open = ! open"
-                            class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                            <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"
-                                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                viewBox="0 0 18 21">
-                                <path
-                                    d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
-                            </svg>
-                            <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Home</span>
-                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                                viewBox="0 0 10 6">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="2" d="m1 1 4 4 4-4" />
-                            </svg>
-                        </button>
-                        <ul class="py-2 space-y-2" x-show="open">
-                            <li>
-                                <a href="#"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Products</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Billing</a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">Invoice</a>
-                            </li>
+
+                        <x-sidebar.button @click="toggleList('entertainment')">Entertainment</x-sidebar.button>
+                        <ul id="entertainment" class="list py-2 space-y-2" x-show="openList === 'entertainment'" x-cloak>
+                            @foreach ($entertainment as $item)
+                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                            @endforeach
+                        </ul>
+
+                        <x-sidebar.button @click="toggleList('accessories')">Accessories</x-sidebar.button>
+                        <ul id="accessories" class="list py-2 space-y-2" x-show="openList === 'accessories'" x-cloak>
+                            @foreach ($accessories as $item)
+                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                            @endforeach
+                        </ul>
+
+                        <x-sidebar.button @click="toggleList('family')">Family</x-sidebar.button>
+                        <ul id="family" class="list py-2 space-y-2" x-show="openList === 'family'" x-cloak>
+                            @foreach ($family as $item)
+                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                            @endforeach
+                        </ul>
+
+                        <x-sidebar.button @click="toggleList('electronics')">Electronics</x-sidebar.button>
+                        <ul id="electronics" class="list py-2 space-y-2" x-show="openList === 'electronics'" x-cloak>
+                            @foreach ($electronics as $item)
+                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                            @endforeach
+                        </ul>
+
+                        <x-sidebar.button @click="toggleList('hobbies')">Hobbies</x-sidebar.button>
+                        <ul id="hobbies" class="list py-2 space-y-2" x-show="openList === 'hobbies'" x-cloak>
+                            @foreach ($hobbies as $item)
+                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                            @endforeach
+                        </ul>
+
+                        <x-sidebar.button @click="toggleList('vichies')">Vichies</x-sidebar.button>
+                        <ul id="vichies" class="list py-2 space-y-2" x-show="openList === 'vichies'" x-cloak>
+                            @foreach ($vichies as $item)
+                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                            @endforeach
                         </ul>
                     </li>
                 </ul>

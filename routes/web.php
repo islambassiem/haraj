@@ -16,4 +16,4 @@ Route::middleware([
 
 Route::get('/home', [HomeController::class, 'index']);
 
-Route::get('/home/{category}', [HomeController::class, 'show']);
+Route::get('/home/{category:uuid}', [HomeController::class, 'show']);

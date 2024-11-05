@@ -19,7 +19,7 @@ class PostFactory extends Factory
   public function definition(): array
   {
     $user       = collect(User::all())->random();
-    $category   = collect(Category::whereNull('parent_id')->get())->random();
+    $category   = collect(Category::whereNotNull('parent_id')->get())->random();
     return [
       'user_id' => $user->id,
       'category_id' => $category->id,

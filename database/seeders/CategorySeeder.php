@@ -20,7 +20,7 @@ class CategorySeeder extends Seeder
     Category::create(['name' => 'family', 'parent_id' => null]);
     Category::create(['name' => 'electronics', 'parent_id' => null]);
     Category::create(['name' => 'hobbies', 'parent_id' => null]);
-    Category::create(['name' => 'vechiles', 'parent_id' => null]);
+    Category::create(['name' => 'vichies', 'parent_id' => null]);
 
     Category::create(['name' => 'tools', 'parent_id' => 1]);
     Category::create(['name' => 'furniture', 'parent_id' => 1]);
@@ -53,7 +53,7 @@ class CategorySeeder extends Seeder
     Category::create(['name' => 'bicycles', 'parent_id' => 6]);
     Category::create(['name' => 'arts', 'parent_id' => 6]);
     Category::create(['name' => 'sports', 'parent_id' => 6]);
-    Category::create(['name' => 'autoparts', 'parent_id' => 6]);
+    Category::create(['name' => 'parts', 'parent_id' => 6]);
     Category::create(['name' => 'musicals', 'parent_id' => 6]);
     Category::create(['name' => 'antiques', 'parent_id' => 6]);
   }
