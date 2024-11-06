@@ -119,49 +119,49 @@
                         <x-sidebar.button @click="toggleList('home')">Home</x-sidebar.button>
                         <ul id="home" class="list py-2 space-y-2" x-show="openList === 'home'" x-cloak>
                             @foreach ($home as $item)
-                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                                <x-sidebar.list-item href="{{ url('/category/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
                             @endforeach
                         </ul>
 
                         <x-sidebar.button @click="toggleList('entertainment')">Entertainment</x-sidebar.button>
                         <ul id="entertainment" class="list py-2 space-y-2" x-show="openList === 'entertainment'" x-cloak>
                             @foreach ($entertainment as $item)
-                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                                <x-sidebar.list-item href="{{ url('/category/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
                             @endforeach
                         </ul>
 
                         <x-sidebar.button @click="toggleList('accessories')">Accessories</x-sidebar.button>
                         <ul id="accessories" class="list py-2 space-y-2" x-show="openList === 'accessories'" x-cloak>
                             @foreach ($accessories as $item)
-                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                                <x-sidebar.list-item href="{{ url('/category/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
                             @endforeach
                         </ul>
 
                         <x-sidebar.button @click="toggleList('family')">Family</x-sidebar.button>
                         <ul id="family" class="list py-2 space-y-2" x-show="openList === 'family'" x-cloak>
                             @foreach ($family as $item)
-                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                                <x-sidebar.list-item href="{{ url('/category/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
                             @endforeach
                         </ul>
 
                         <x-sidebar.button @click="toggleList('electronics')">Electronics</x-sidebar.button>
                         <ul id="electronics" class="list py-2 space-y-2" x-show="openList === 'electronics'" x-cloak>
                             @foreach ($electronics as $item)
-                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                                <x-sidebar.list-item href="{{ url('/category/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
                             @endforeach
                         </ul>
 
                         <x-sidebar.button @click="toggleList('hobbies')">Hobbies</x-sidebar.button>
                         <ul id="hobbies" class="list py-2 space-y-2" x-show="openList === 'hobbies'" x-cloak>
                             @foreach ($hobbies as $item)
-                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                                <x-sidebar.list-item href="{{ url('/category/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
                             @endforeach
                         </ul>
 
                         <x-sidebar.button @click="toggleList('vichies')">Vichies</x-sidebar.button>
                         <ul id="vichies" class="list py-2 space-y-2" x-show="openList === 'vichies'" x-cloak>
                             @foreach ($vichies as $item)
-                                <x-sidebar.list-item href="{{ url('/home/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
+                                <x-sidebar.list-item href="{{ url('/category/' . $item->uuid) }}">{{ Str::ucfirst($item->name) }}</x-sidebar.list-item>
                             @endforeach
                         </ul>
                     </li>

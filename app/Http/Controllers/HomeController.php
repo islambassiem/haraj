@@ -11,7 +11,9 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        return view('index', [
+            'posts' => Post::simplePaginate(15),
+        ]);
     }
 
     public function show(Category $category)
@@ -19,7 +21,7 @@ class HomeController extends Controller
         $posts = Post::query()
             ->with(['user'])
             ->where('category_id', $category->id)
-            ->get();
+            ->paginate(5);
         return view('home')
             ->with('posts', $posts);
     }
